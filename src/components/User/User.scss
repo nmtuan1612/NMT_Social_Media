@@ -1,0 +1,39 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .user-info {
+    display: flex;
+    gap: 10px;
+
+    & .user-img {
+      height: 3.2rem;
+      width: 3.2rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    & .user-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      & .user-name {
+        font-weight: bold;
+      }
+    }
+  }
+
+  & .follow-btn {
+    height: 2rem;
+    padding: 0 20px;
+  }
+
+  & .unfollow-btn {
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    background: transparent;
+  }
+}

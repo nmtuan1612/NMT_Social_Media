@@ -1,0 +1,64 @@
+@import "/src/App.scss";
+
+.LogoSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  @include mobile {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  & > a > img {
+    width: 2.8rem;
+  }
+
+  & .Search {
+    flex: 1;
+
+    & .search-form {
+      display: flex;
+      background-color: var(--inputColor);
+      border-radius: 10px;
+      padding: 5px;
+      height: 32px;
+      position: relative;
+
+      & > input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        flex: 1;
+      }
+      & .search-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(106deg, #f99827, #f95f35 100%);
+        border-radius: 6px;
+        padding: 4px;
+        color: #fff;
+      }
+      & .search-result {
+        z-index: 10;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        padding: 8px 2px;
+        max-height: 16rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 98%;
+        background-color: #fff;
+        border-radius: 4px 4px 6px 6px;
+        box-shadow: 0px 2px 4px 1px #999;
+        overflow-y: auto;
+      }
+    }
+  }
+}

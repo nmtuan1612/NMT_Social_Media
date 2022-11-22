@@ -1,0 +1,18 @@
+@import "/src/App.scss";
+
+.ProfileSide {
+    
+    & .user-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        overflow: auto;
+        flex: 1;
+        @include mobile {
+            display: none;
+        }
+        @include tablet {
+            display: none;
+        }
+    }
+}

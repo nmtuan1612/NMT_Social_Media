@@ -1,0 +1,110 @@
+@import "/src/App.scss";
+
+.ProfileCard {
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 1rem;
+  overflow-x: clip;
+  background: var(--cardColor);
+  padding-bottom: 1rem;
+
+  /* ProfileImages */
+  & .ProfileImages {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .cover-img {
+      width: 100%;
+      min-width: 280px;
+      max-height: 14rem;
+      object-fit: cover;
+      @include mobile {
+        max-height: 8rem;
+      }
+      @include tablet {
+        max-height: 8rem;
+      }
+    }
+
+    & .profile-img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -3rem;
+      box-shadow: var(--profileShadow);
+    }
+  }
+
+  /* ProfileName */
+  & .ProfileName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 10px;
+
+    & .profile-name {
+      font-weight: bold;
+    }
+  }
+
+  /* FollowStatus */
+  & .FollowStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
+    & > hr {
+      width: 85%;
+      border: 1px solid var(--hrColor);
+    }
+
+    & > .follow-info {
+      display: flex;
+      gap: 1rem;
+      width: 80%;
+      justify-content: space-around;
+      align-items: center;
+
+      & .follow {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        & > .follow-number {
+          font-weight: bold;
+        }
+
+        & > .follow-text {
+          color: var(--gray);
+          font-size: 12px;
+        }
+      }
+
+      & .separator {
+        height: 120%;
+        width: 2px;
+        background-color: var(--hrColor);
+      }
+    }
+  }
+
+  & .MyProfile {
+    font-weight: bold;
+    align-self: center;
+    // margin-bottom: 1rem;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,117 @@
+@import "/src/App.scss";
+
+.Auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 4rem;
+  position: relative;
+  @include mobile {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  @include tablet {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* left side */
+  & > .auth-left {
+    gap: 2rem;
+    @include mobile {
+      flex-direction: column;
+    }
+    @include tablet {
+      flex-direction: column;
+    }
+
+    & > img {
+      width: 6rem;
+    }
+
+    & > .web-name {
+      & > h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        // background-color: red;
+
+        // Create the gradient
+        background-image: var(--buttonBg);
+
+        // Set the background size and repeat properties
+        background-size: 100%;
+        background-repeat: repeat;
+
+        // Use the text as mask for the background
+        // This will show the gradient as the text color rather than the element background
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+      }
+
+      & > h6 {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  /* right side */
+  & > .auth-right {
+    & .info-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      & > .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        height: 2rem;
+        width: 100%;
+        // @include mobile {
+        //   flex-direction: column;
+        // }
+        // @include tablet {
+        //   flex-direction: column;
+        // }
+
+        & > .info-input {
+          border: none;
+          outline: none;
+          background-color: var(--inputColor);
+          border-radius: 8px;
+          padding: 14px 20px;
+          flex: 1;
+        }
+      }
+      & .info-text {
+        font-size: 12px;
+        cursor: pointer;
+      }
+      & .info-btn {
+        width: 6rem;
+        height: 2rem;
+        align-self: flex-end;
+      }
+    }
+
+    & .auth-form {
+      background-color: var(--cardColor);
+      border-radius: 1rem;
+      padding: 1rem;
+      min-width: 260px;
+    }
+  }
+}

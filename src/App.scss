@@ -1,0 +1,146 @@
+:root {
+  --yellow: #f5c32c;
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: rgba(36, 45, 73, 0.65);
+  --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+  --hrColor: #cfcdcd;
+  --cardColor: rgba(255, 255, 255, 0.64);
+  --buttonBg: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
+  --inputColor: rgba(40, 52, 62, 0.07);
+  --photo: #4cb256;
+  --video: #4a4eb7;
+  --location: #ef5757;
+  --schedule: #e1ae4a;
+  --borderColor: rgba(0, 0, 0, 0.12);
+}
+
+/* Mixin */
+/* Set các giá trị với màn hình tương ứng */
+$mobile-width: 480px; 
+$tablet-width: 768px; 
+$desktop-width: 1024px;  
+
+@mixin mobile { @media (max-width: #{$mobile-width}) {     
+  @content;   
+ } 
+}  
+
+@mixin tablet { @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {       
+   @content;   
+ } 
+}  
+
+@mixin desktop { @media (min-width: #{$desktop-width}) {     
+  @content;  
+ } 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.App {
+  overflow: hidden;
+  color: var(--black);
+  background: #f3f3f3f3;
+  padding: 1rem;
+}
+
+.blur {
+  position: absolute;
+  width: 22rem;
+  height: 14rem;
+  border-radius: 50%;
+  background-color: #a6ddf0;
+  filter: blur(72px);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--buttonBg);
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: var(--orange);
+  background: transparent;
+  border: 2px solid var(--orange);
+}
+
+.button:disabled {
+  background-color: grey;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.info-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  & > .input-group {
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 2rem;
+    width: 100%;
+
+    & > .input-item {
+      height: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      gap: 0.2rem;
+
+      & .input-label {
+        font-size: 12px;
+        padding-left: 8px;
+      }
+
+      & .info-input {
+        border: none;
+        outline: none;
+        background-color: var(--inputColor);
+        border-radius: 8px;
+        padding: 10px 20px;
+      }
+    }
+    & > .info-input {
+      border: none;
+      outline: none;
+      background-color: var(--inputColor);
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+    }
+  }
+  & .info-text {
+    font-size: 12px;
+  }
+  & .info-btn {
+    width: 6rem;
+    height: 2rem;
+    align-self: flex-end;
+  }
+}

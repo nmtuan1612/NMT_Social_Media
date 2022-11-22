@@ -1,0 +1,20 @@
+@import "/src/App.scss";
+
+.Home {
+  position: relative;
+  display: grid;
+
+  @include mobile {
+    // overflow: scroll;
+  }
+  @include tablet {
+    justify-content: space-around;
+    grid-template-rows: 3rem auto 3rem;
+    gap: 1rem;
+  }
+  @include desktop {
+    justify-content: space-around;
+    grid-template-columns: 20rem 38rem 18rem;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,23 @@
+@import "/src/App.scss";
+
+.Profile {
+  position: relative;
+  display: grid;
+  overflow-y: auto;
+  @include tablet {
+    justify-content: space-around;
+    grid-template-rows: 3rem auto 3rem;
+    gap: 1rem;
+  }
+  @include desktop {
+    justify-content: space-around;
+    grid-template-columns: 20rem 36rem 18rem;
+    gap: 1rem;
+  }
+
+  & > .Profile-center {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
