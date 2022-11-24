@@ -9,6 +9,6 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### An account to test web's features
+### An account for testing web's features
 #### Username: Toilatuan
 #### Pass: 161200
