@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
-import "./ProfileCard.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { useUser } from '../../hooks';
 import UserList from "../userReactList/UserList";
+import { followUser, unFollowUser } from "../../redux/actions/UserAction";
+import "./ProfileCard.scss";
 
 const ProfileCard = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const posts = useSelector((state) => state.postReducer.posts);
 
   const [currentUser, setCurrentUser] = useState(user);
+  const [following, setFollowing] = useState(false);
   const [followModal, setFollowModal] = useState({ visible: false, listIds: [] });
 
   const data = useUser();
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
   
   const serverPublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
     if (data) {
       setCurrentUser(data);
+      setFollowing(data.followers.includes(user._id))
     }
-  }, [data]);
+  }, [data, user]);
 
   useEffect(() => {
     hideFollowModal();
@@ -29,6 +33,14 @@ const ProfileCard = () => {
 
   const hideFollowModal = () => {
     setFollowModal({ visible: false, listIds: [] });
+  };
+
+  const handleFollow = (e) => {
+    // e.preventDefault();
+    following
+      ? dispatch(unFollowUser(data._id, user))
+      : dispatch(followUser(data._id, user));
+    setFollowing(prev => !prev);
   };
 
   return (
@@ -44,7 +56,9 @@ const ProfileCard = () => {
           alt=""
         />
         <img
-          className="profile-img"
+          className={`profile-img ${
+            pathname.includes("profile") && currentUser._id !== user._id ? "profile-page" : ""
+          }`}
           src={
             currentUser.profilePicture
               ? serverPublicFolder + currentUser.profilePicture
@@ -54,21 +68,56 @@ const ProfileCard = () => {
         />
       </div>
 
-      <div className="ProfileName">
-        <span className="profile-name">{currentUser.userName}</span>
-        <span>{currentUser.about ? currentUser.about : "Write about yourself"}</span>
+      <div
+        className={`ProfileName ${
+          currentUser._id !== user._id ? "other-user-profile" : ""
+        }`}
+      >
+        <div className={`profile-name ${pathname.includes("profile") && currentUser._id !== user._id ? "other-user-name" : ""}`}>
+          <span className="name-text">{currentUser.userName}</span>
+          {currentUser.about ? (
+            <span>{currentUser.about}</span>
+          ) : currentUser._id === user._id ? (
+            <span>Write about yourself</span>
+          ) : <div style={{ height: "1rem" }} />}
+        </div>
+
+        {pathname.includes("profile") && currentUser._id !== user._id ? (
+          <button
+            className={`button follow-btn ${following ? "unfollow-btn" : ""}`}
+            onClick={handleFollow}
+          >
+            {following ? "Unfollow" : "Follow"}
+          </button>
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="FollowStatus">
         <hr />
         <div className="follow-info">
-          <div className="follow" onClick={() => setFollowModal({ visible: true, listIds: currentUser.followers})}>
-            <span className="follow-number">{currentUser.followers.length}</span>
+          <div
+            className="follow"
+            onClick={() =>
+              setFollowModal({ visible: true, listIds: currentUser.followers })
+            }
+          >
+            <span className="follow-number">
+              {currentUser.followers.length}
+            </span>
             <span className="follow-text">Followers</span>
           </div>
           <div className="separator"></div>
-          <div className="follow" onClick={() => setFollowModal({ visible: true, listIds: currentUser.following})}>
-            <span className="follow-number">{currentUser.following.length}</span>
+          <div
+            className="follow"
+            onClick={() =>
+              setFollowModal({ visible: true, listIds: currentUser.following })
+            }
+          >
+            <span className="follow-number">
+              {currentUser.following.length}
+            </span>
             <span className="follow-text">Followings</span>
           </div>
 
@@ -77,7 +126,10 @@ const ProfileCard = () => {
               <div className="separator"></div>
               <div className="follow">
                 <span className="follow-number">
-                  {posts.filter((post) => post.userId === currentUser._id).length}
+                  {
+                    posts.filter((post) => post.userId === currentUser._id)
+                      .length
+                  }
                 </span>
                 <span className="follow-text">Posts</span>
               </div>
@@ -100,7 +152,16 @@ const ProfileCard = () => {
         </span>
       )}
 
-      {followModal.visible ? <UserList title="Follow" userIdList={followModal.listIds} openModal={followModal.visible} hideModal={hideFollowModal} /> : ""}
+      {followModal.visible ? (
+        <UserList
+          title="Follow"
+          userIdList={followModal.listIds}
+          openModal={followModal.visible}
+          hideModal={hideFollowModal}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

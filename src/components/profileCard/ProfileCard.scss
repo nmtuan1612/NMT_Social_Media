@@ -39,19 +39,55 @@
       position: absolute;
       bottom: -3rem;
       box-shadow: var(--profileShadow);
+      &.profile-page {
+        left: 2rem;
+        bottom: -4rem;
+        @include mobile {
+          left: 1rem;
+        }
+      }
     }
   }
 
   /* ProfileName */
   & .ProfileName {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-top: 3rem;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    
+    &.other-user-profile {
+      padding: 0 2rem 0 8.8rem;
+      margin-top: 0rem;
+      justify-content: space-between;
+      @include mobile {
+        padding: 0 1rem 0 7.8rem;
+      }
+    }
 
     & .profile-name {
-      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      &.other-user-name {
+        align-items: flex-start;
+      }
+
+      & .name-text {
+        font-weight: bold;
+      }
+    }
+
+    & .follow-btn {
+      height: 2rem;
+      padding: 0 20px;
+    }
+  
+    & .unfollow-btn {
+      color: var(--orange);
+      border: 2px solid var(--orange);
+      background: transparent;
     }
   }
 
