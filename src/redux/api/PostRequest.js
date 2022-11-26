@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://nmt-social-media.herokuapp.com" });
 
 export const getPost = (postId) => API.get(`post/${postId}`);
 
