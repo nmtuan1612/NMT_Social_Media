@@ -5,16 +5,21 @@ import Modal from "@mui/material/Modal";
 import User from "../User/User";
 import { getAllUsers } from "../../redux/api/UserRequest";
 import "./UserList.scss";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const UserList = (props) => {
   const { title, userIdList, openModal, hideModal } = props;
   const [userList, setUserList] = useState([]);
-  const { user: currentUser } = useSelector(state => state.authReducer.authData);
+  const [loading, setLoading] = useState(false);
+  const { user: currentUser } = useSelector(
+    (state) => state.authReducer.authData
+  );
 
   useEffect(() => {
     const fetchUsers = async () => {
+      setLoading(true);
       const { data } = await getAllUsers(userIdList);
+      setLoading(false);
       setUserList(data);
     };
     fetchUsers();
@@ -47,7 +52,26 @@ const UserList = (props) => {
         />
         <div className="likes-list">
           <h3>{title ? title : "Likes"}</h3>
-          {userList.length ? (
+          {loading ? (
+            <div style={{ color: "var(--gray", fontSize: 14 }}>
+              <i>Loading...</i>
+            </div>
+          ) : userList.length ? (
+            <div className="user-list">
+              {userList.map((user) => (
+                <User
+                  data={user}
+                  key={user._id}
+                  showFollow={currentUser._id !== user._id}
+                />
+              ))}
+            </div>
+          ) : (
+            <div style={{ color: "var(--gray", fontSize: 14 }}>
+              <i>{`No one ${title ? title : "like"}.`}</i>
+            </div>
+          )}
+          {/* {userList.length ? (
             <div className="user-list">
               {userList.map((user) => (
                 <User data={user} key={user._id} showFollow={currentUser._id !== user._id} />
@@ -57,7 +81,7 @@ const UserList = (props) => {
             <div style={{ color: "var(--gray", fontSize: 14 }}>
               <i>{`No one ${title ? title : "like"}.`}</i>
             </div>
-          )}
+          )} */}
         </div>
       </Box>
     </Modal>
