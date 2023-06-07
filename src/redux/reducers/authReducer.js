@@ -24,7 +24,7 @@ const authReducer = (state = initState, action) => {
       return { ...state, loading: false, error: true };
 
     case "UPDATING_START":
-      return initState;
+      return { ...state, updating: true };
     case "UPDATING_SUCCESS":
       localStorage.setItem("profile", JSON.stringify({ ...action?.payload }));
       return {

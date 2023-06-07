@@ -43,15 +43,16 @@ const CommentShare = (props) => {
 
   return (
     <div className='share-comment'>
-      <img
-        className='profile-img'
-        src={
-          user?.profilePicture
-            ? process.env.REACT_APP_PUBLIC_FOLDER + user?.profilePicture
-            : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplain-white-background&psig=AOvVaw0RA9E5KddBSwB8X3R1hRJ7&ust=1686132401107000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDngeiyrv8CFQAAAAAdAAAAABAD"
-        }
-        alt={user?.profilePicture}
-      />
+      <div className='profile-img'>
+        <img
+          src={
+            user?.profilePicture
+              ? user.profilePicture
+              : "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
+          }
+          alt={user?.profilePicture}
+        />
+      </div>
       <form className='comment-form'>
         <input
           type='text'

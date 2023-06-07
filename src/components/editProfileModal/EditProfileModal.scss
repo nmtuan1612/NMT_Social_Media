@@ -13,12 +13,26 @@
     width: 80%;
   }
 
-  .input-file__button {
-    border: 1px dashed var(--hrColor);
-    width: 50px;
-    height: 50px;
-    svg {
-      font-size: 20px;
+  .input-file__wrap {
+    display: flex;
+    gap: 1rem;
+
+    & > input {
+      display: none;
+    }
+
+    .input-file__button {
+      border: 1px dashed var(--hrColor);
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      cursor: pointer;
+      svg {
+        font-size: 20px;
+      }
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

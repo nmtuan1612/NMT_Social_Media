@@ -68,7 +68,10 @@ const FixedBottomNavigation = () => {
         </div>
       )}
       {currTab === "messages" && (
-        <div className='bottom-nav__tab'>{chatID && otherUserId ? <ChatBox /> : <Messenger />}</div>
+        // <div className='bottom-nav__tab'>{chatID && otherUserId ? <ChatBox /> : <Messenger />}</div>
+        <div className='bottom-nav__tab'>
+          <Messenger />
+        </div>
       )}
       {currTab === "menu" && (
         <div className='bottom-nav__tab'>
@@ -76,17 +79,11 @@ const FixedBottomNavigation = () => {
           <List sx={{ backgroundColor: "white", padding: 0, width: "100%" }}>
             <ListItem disablePadding sx={{ marginBottom: "12px" }}>
               <Link to={`/profile/${user._id}`} style={{ textDecoration: "none", display: "block", width: "100%" }}>
-                {/* <ListItemButton sx={{ padding: "4px 8px", borderRadius: 2 }}>
-                  <ListItemIcon sx={{ minWidth: 32 }}>
-                    <AccountBoxOutlinedIcon sx={{ width: 26, height: 26 }} />
-                  </ListItemIcon>
-                  <ListItemText secondary='My profile' />
-                </ListItemButton> */}
                 <div className='user-info'>
                   <img
                     src={
                       user.profilePicture ||
-                      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplain-white-background&psig=AOvVaw0RA9E5KddBSwB8X3R1hRJ7&ust=1686132401107000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDngeiyrv8CFQAAAAAdAAAAABAD"
+                      "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
                     }
                     alt=''
                     className='user-img'
@@ -99,7 +96,7 @@ const FixedBottomNavigation = () => {
               </Link>
             </ListItem>
 
-            <ListItem disablePadding sx={{ marginBottom: "12px" }}>
+            <ListItem disablePadding>
               <ListItemButton onClick={showEditModal} sx={{ padding: "4px 8px", borderRadius: 2 }}>
                 <ListItemIcon sx={{ minWidth: 32 }}>
                   <EditOutlinedIcon sx={{ width: 24, height: 24 }} />
@@ -108,9 +105,11 @@ const FixedBottomNavigation = () => {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ marginBottom: "12px" }}>
+            <div style={{ borderTop: "2px solid var(--hrColor)", margin: 12 }} />
+
+            <ListItem disablePadding>
               <div className='flex__center' style={{ width: "100%" }}>
-                <button className='button' onClick={handleLogout} style={{ width: 100 }}>
+                <button className='button' onClick={handleLogout} style={{ width: 120, background: "#b0acac" }}>
                   <LogoutIcon sx={{ width: 24, height: 24 }} /> Logout
                 </button>
               </div>
@@ -177,11 +176,11 @@ const FixedBottomNavigation = () => {
             icon={
               <img
                 src={
-                  user.profilePicture
-                    ? process.env.REACT_APP_PUBLIC_FOLDER + user.profilePicture
-                    : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplain-white-background&psig=AOvVaw0RA9E5KddBSwB8X3R1hRJ7&ust=1686132401107000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDngeiyrv8CFQAAAAAdAAAAABAD"
+                  user?.profilePicture
+                    ? user.profilePicture
+                    : "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
                 }
-                alt={user.profilePicture}
+                alt={user?.profilePicture?.slice(-10)}
                 style={{
                   borderRadius: "50%",
                   objectFit: "cover"

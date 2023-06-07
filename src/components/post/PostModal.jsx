@@ -7,16 +7,15 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { updatePost } from "../../redux/actions/PostAction";
-import { uploadImage } from "../../redux/actions/UploadAction";
-import "./PostModal.scss";
 import { PostApi } from "../../redux/api";
+import "./PostModal.scss";
 
 const PostModal = (props) => {
   const { post, author, modalData, closeModal, handleDelete } = props;
-  console.log("alo");
+  const { loading } = useSelector((state) => state.postReducer);
 
   const [postDesc, setPostDesc] = useState(post.desc);
   const [image, setImage] = useState(null);
@@ -55,16 +54,27 @@ const PostModal = (props) => {
   const saveChange = async () => {
     const editedPost = { ...post, desc: postDesc };
 
-    if (image || video) {
+    if (image) {
       const postData = new FormData();
       const fileName = Date.now() + image.name;
       postData.append("name", fileName);
       postData.append("file", image);
-      // editedPost.image = fileName;
 
       try {
         const { data } = await PostApi.uploadImage(postData);
-        console.log(data);
+        editedPost.image = data?.url;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (video) {
+      const postData = new FormData();
+      const fileName = Date.now() + video.name;
+      postData.append("name", fileName);
+      postData.append("file", video);
+
+      try {
+        const { data } = await PostApi.uploadImage(postData);
         editedPost.image = data?.url;
       } catch (error) {
         console.log(error);
@@ -73,7 +83,7 @@ const PostModal = (props) => {
 
     dispatch(updatePost(editedPost));
     cancel();
-    toast.success("Updated post successfully!");
+    toast.success("Update post successfully!");
   };
 
   const cancel = () => {
@@ -157,15 +167,16 @@ const PostModal = (props) => {
             <div className='post-info'>
               <div className='post-detail'>
                 <div className='author-info'>
-                  <img
-                    className='profile-img'
-                    src={
-                      author?.profilePicture
-                        ? process.env.REACT_APP_PUBLIC_FOLDER + author?.profilePicture
-                        : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplain-white-background&psig=AOvVaw0RA9E5KddBSwB8X3R1hRJ7&ust=1686132401107000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDngeiyrv8CFQAAAAAdAAAAABAD"
-                    }
-                    alt={author?.profilePicture}
-                  />
+                  <div className='profile-img'>
+                    <img
+                      src={
+                        author?.profilePicture
+                          ? author?.profilePicture
+                          : "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
+                      }
+                      alt={author?.profilePicture}
+                    />
+                  </div>
                   <span>
                     <b>{post.author}</b>
                   </span>
@@ -213,6 +224,7 @@ const PostModal = (props) => {
               </div>
               <div className='post-save'>
                 <button className='button save-btn' onClick={saveChange}>
+                  {loading && <div className='loader' />}
                   Save
                 </button>
               </div>

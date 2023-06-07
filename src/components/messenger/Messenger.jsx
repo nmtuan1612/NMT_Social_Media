@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Skeleton from "@mui/material/Skeleton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ChatApi } from "../../redux/api";
-import Chat from "./components/chat/Chat";
 import "./Messenger.scss";
+import Chat from "./components/chat/Chat";
 
 const Messenger = (props) => {
   const { hideMessenger } = props;
@@ -12,8 +12,10 @@ const Messenger = (props) => {
   const [loading, setLoading] = useState(false);
 
   const { user } = useSelector((state) => state.authReducer.authData);
+  const { sizeState } = useSelector((state) => state.appReducer);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchConversation = async () => {
@@ -52,22 +54,34 @@ const Messenger = (props) => {
               </div>
             ))}
         </ul>
-      ) : conversations && conversations.length ? (
-        <ul className='popover__list-item' id='message__list'>
-          {conversations.map((chat) => {
-            const otherUserId = chat?.author_ids?.filter((id) => id !== user?._id)[0];
-
-            return (
-              <div style={{ color: "var(--black)" }} key={chat?._id} onClick={() => joinChat(chat?._id, otherUserId)}>
-                <Chat chatData={chat} otherUserId={otherUserId} hideMessenger={hideMessenger} />
-              </div>
-            );
-          })}
-        </ul>
       ) : (
-        <div style={{ color: "var(--gray)" }}>
-          <i>No message found.</i>
-        </div>
+        <>
+          {conversations?.length ? (
+            <ul className='popover__list-item' id='message__list'>
+              {conversations.map((chat) => {
+                const otherUserId = chat?.author_ids?.filter((id) => id !== user?._id)[0];
+
+                return (
+                  <div
+                    style={{ color: "var(--black)" }}
+                    key={chat?._id}
+                    onClick={() => {
+                      joinChat(chat?._id, otherUserId);
+                      sizeState !== "desktop" && navigate("/messenger");
+                      document.querySelectorAll(".bottom-nav__tab").forEach((node) => (node.style.display = "none"));
+                    }}
+                  >
+                    <Chat chatData={chat} otherUserId={otherUserId} hideMessenger={hideMessenger} />
+                  </div>
+                );
+              })}
+            </ul>
+          ) : (
+            <div style={{ color: "var(--gray)" }}>
+              <i>No message found.</i>
+            </div>
+          )}
+        </>
       )}
     </>
   );

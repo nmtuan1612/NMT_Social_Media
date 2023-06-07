@@ -31,15 +31,16 @@ const Chat = (props) => {
         </>
       ) : (
         <div className='chat' onClick={hideMessenger}>
-          <img
-            className='chat_avatar'
-            src={
-              attackUser.profilePicture
-                ? process.env.REACT_APP_PUBLIC_FOLDER + attackUser.profilePicture
-                : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fplain-white-background&psig=AOvVaw0RA9E5KddBSwB8X3R1hRJ7&ust=1686132401107000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDngeiyrv8CFQAAAAAdAAAAABAD"
-            }
-            alt='avt'
-          />
+          <div className='chat_avatar'>
+            <img
+              src={
+                attackUser?.profilePicture
+                  ? attackUser.profilePicture
+                  : "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
+              }
+              alt='avt'
+            />
+          </div>
           <div className='chat_content'>
             <span className='attack__user-name'>{attackUser?.userName}</span>
             <div className='chat-newest__msg'>

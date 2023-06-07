@@ -1,3 +1,4 @@
+import Skeleton from "@mui/material/Skeleton";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -28,13 +29,33 @@ const PostView = () => {
   return (
     <div className='PostView'>
       <ProfileSide />
-      {post ? (
-        <div className='current-post'>
+      <div className='current-post'>
+        {post ? (
           <Post data={post} inPostView={true} />
-        </div>
-      ) : (
-        ""
-      )}
+        ) : (
+          <div className='Post box__shadow'>
+            <div className='post-options'>
+              <div className='author-info'>
+                <Skeleton className='profile-img' variant='circular' width={32} height={32} />
+                <Skeleton className='profile-user__name' variant='rounded' width={70} height={18} />
+              </div>
+            </div>
+            <div className='detail'>
+              <Skeleton height={20} variant='rounded' sx={{ width: "80%" }} />
+            </div>
+            <div className='detail'>
+              <Skeleton height={20} variant='rounded' sx={{ width: "50%" }} />
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <Skeleton variant='rounded' width={30} height={20} />
+              <Skeleton variant='rounded' width={30} height={20} />
+              <Skeleton variant='rounded' width={30} height={20} />
+            </div>
+
+            <Skeleton variant='rounded' height={18} sx={{ width: "90%" }} />
+          </div>
+        )}
+      </div>
       {sizeState === "desktop" ? <RightSide /> : <FixedBottomNavigation />}
     </div>
   );

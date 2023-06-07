@@ -5,8 +5,8 @@ const SavedPost = (props) => {
   const { savedPost, hideSaved, hidePopUp } = props;
 
   const hide = () => {
-    hidePopUp && hidePopUp();
-    hideSaved && hideSaved();
+    hidePopUp?.();
+    hideSaved?.();
   };
   return (
     <Link
@@ -21,11 +21,13 @@ const SavedPost = (props) => {
       <div className='popover__item' onClick={hide}>
         <div className='post-thumb'>
           {savedPost.image ? (
-            savedPost.image.includes(".mp4") || savedPost.image.includes(".mov") ? (
-              <video className='post-img' src={savedPost.image} alt={savedPost.image.slice(-10)} />
-            ) : (
-              <img className='post-img' src={savedPost.image} alt={savedPost.image.slice(-10)} />
-            )
+            <>
+              {savedPost.image.includes(".mp4") || savedPost.image.includes(".mov") ? (
+                <video className='post-img' src={savedPost.image} alt={savedPost.image.slice(-10)} />
+              ) : (
+                <img className='post-img' src={savedPost.image} alt={savedPost.image.slice(-10)} />
+              )}
+            </>
           ) : (
             ""
           )}

@@ -1,0 +1,23 @@
+@import "/src/App.scss";
+
+.MessengerPage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @include mobile {
+  }
+  @include tablet {
+  }
+  @include desktop {
+    display: none;
+  }
+
+  .messenger__box-center {
+    flex: 1;
+    margin: 1px -16px 0;
+    .chat__close-btn {
+      display: none;
+    }
+  }
+}

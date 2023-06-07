@@ -29,7 +29,7 @@ const ProfileCard = () => {
   const serverPublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    setCurrentUser(null )
+    setCurrentUser(null);
     if (data) {
       setCurrentUser(data);
       setFollowing(data.followers.includes(user._id));
@@ -81,11 +81,10 @@ const ProfileCard = () => {
             <img
               className='cover-img'
               src={
-                currentUser.coverPicture
-                  ? serverPublicFolder + currentUser.coverPicture
-                  : serverPublicFolder + "cover.jpg"
+                currentUser.coverPicture ||
+                "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686144829/pumtwznfzzffgtv4aaio.jpg"
               }
-              alt=''
+              alt='cover-pic'
             />
             <img
               className={`profile-img ${
@@ -93,11 +92,10 @@ const ProfileCard = () => {
                 pathname.includes("profile") ? "profile-page" : ""
               }`}
               src={
-                currentUser.profilePicture
-                  ? serverPublicFolder + currentUser.profilePicture
-                  : serverPublicFolder + "profileImg.jpg"
+                currentUser.profilePicture ||
+                "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
               }
-              alt=''
+              alt='avt-pic'
             />
           </>
         )}
@@ -112,7 +110,7 @@ const ProfileCard = () => {
           </div>
         </div>
       ) : (
-        <div className={`ProfileName ${!pathname.includes("home") ? "other-user-profile" : ""}`}>
+        <div className={`ProfileName ${pathname.includes("profile") ? "other-user-profile" : ""}`}>
           {/* <div className={`ProfileName other-user-profile`}> */}
           <div
             className={`profile-name ${

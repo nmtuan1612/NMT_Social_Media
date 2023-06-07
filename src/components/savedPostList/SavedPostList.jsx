@@ -25,7 +25,7 @@ const SavedPostList = (props) => {
     <>
       <h2 style={{ color: "var(--black" }}>Saved posts</h2>
       {loading ? (
-        <ul className='popover__list-item' style={{ width: 200 }}>
+        <ul className='popover__list-item' style={{ width: 240 }}>
           {Array(3)
             .fill({})
             .map((_, idx) => (
@@ -39,16 +39,20 @@ const SavedPostList = (props) => {
               </div>
             ))}
         </ul>
-      ) : savedPosts && savedPosts.length ? (
-        <ul className='popover__list-item'>
-          {savedPosts.map((post) => (
-            <SavedPost key={post._id} savedPost={post} hideSaved={hideSaved} hidePopUp={hidePopUp} />
-          ))}
-        </ul>
       ) : (
-        <div style={{ color: "var(--gray)" }}>
-          <i>No post saved.</i>
-        </div>
+        <>
+          {savedPosts && savedPosts.length ? (
+            <ul className='popover__list-item' style={{ width: 240 }}>
+              {savedPosts.map((post) => (
+                <SavedPost key={post._id} savedPost={post} hideSaved={hideSaved} hidePopUp={hidePopUp} />
+              ))}
+            </ul>
+          ) : (
+            <div style={{ color: "var(--gray)" }}>
+              <i>No post saved.</i>
+            </div>
+          )}
+        </>
       )}
     </>
   );

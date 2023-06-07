@@ -1,8 +1,18 @@
 import ChatBox from "components/messenger/components/ChatBox/ChatBox";
-import React from "react";
+import FixedBottomNavigation from "../../components/bottomNavigation/BottomNavigation";
+import ProfileSide from "../../components/profileSide/ProfileSide";
+import "./MessengerPage.scss";
 
 const MessengerPage = () => {
-  return <ChatBox />;
+  return (
+    <div className='MessengerPage'>
+      <ProfileSide />
+      <div className='messenger__box-center'>
+        <ChatBox />
+      </div>
+      <FixedBottomNavigation />
+    </div>
+  );
 };
 
 export default MessengerPage;

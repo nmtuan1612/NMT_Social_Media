@@ -1,14 +1,16 @@
+import Skeleton from "@mui/material/Skeleton";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getTimelinePosts, getUserPosts } from "../../redux/actions/PostAction";
 import Post from "../post/Post";
 import "./PostsList.scss";
-import { useParams } from "react-router-dom";
-import Skeleton from "@mui/material/Skeleton";
 
 const PostsList = () => {
   const { user } = useSelector((state) => state.authReducer.authData);
   let { posts, loading } = useSelector((state) => state.postReducer);
+
+  // const [page, setPage] = useState(1)
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -43,7 +45,7 @@ const PostsList = () => {
                 <div className='detail'>
                   <Skeleton height={20} variant='rounded' sx={{ width: "50%" }} />
                 </div>
-                <div className='postReact'>
+                <div style={{ display: "flex", gap: 10 }}>
                   <Skeleton variant='rounded' width={30} height={20} />
                   <Skeleton variant='rounded' width={30} height={20} />
                   <Skeleton variant='rounded' width={30} height={20} />

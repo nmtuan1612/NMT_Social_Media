@@ -78,18 +78,19 @@ const ChatBox = (props) => {
           </>
         ) : (
           <>
-            <img
-              src={
-                otherUser.profilePicture
-                  ? serverPublicFolder + otherUser.profilePicture
-                  : serverPublicFolder + "profileImg.jpg"
-              }
-              alt='avt'
-              className='chat-avatar'
-            />
+            <div className='chat-avatar'>
+              <img
+                src={
+                  otherUser?.profilePicture
+                    ? otherUser.profilePicture
+                    : "http://res.cloudinary.com/duyb3dqsr/image/upload/v1686151682/umqnvu5voukxkdxtowo4.png"
+                }
+                alt='avt'
+              />
+            </div>
             <div className='header-user__info'>
               <p>{otherUser?.userName}</p>
-              <div className='flex__center'>
+              <div className='flex__center' style={{ justifyContent: "flex-start" }}>
                 <div className='active-dot' />
                 <span className='chat-user__status'>Active</span>
               </div>

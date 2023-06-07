@@ -24,19 +24,20 @@ export const postReducer = (state = initState, action) => {
     case "UPDATE_START":
       return { ...state, loading: true, error: false };
     case "UPDATE_SUCCESS":
-      const updateIndex = state.posts.findIndex((post) => (post._id = action.payload._id));
+      const updateIndex = state.posts.findIndex((post) => post._id === action.payload._id);
+      console.log(updateIndex);
       state.posts[updateIndex] = action.payload;
       return { ...state, loading: false, error: false };
     case "UPDATE_FAIL":
       return { ...state, loading: false, error: true };
 
     case "LIKE_POST":
-      const postLikeIdx = state.posts.findIndex((post) => (post._id = action.payload._id));
+      const postLikeIdx = state.posts.findIndex((post) => post._id === action.payload._id);
       state.posts[postLikeIdx] = { ...action.payload, authorData: state.posts[postLikeIdx].authorData };
       return { ...state };
 
     case "HIDE_POST":
-      const hideIndex = state.posts.findIndex((post) => (post._id = action.payload._id));
+      const hideIndex = state.posts.findIndex((post) => post._id === action.payload._id);
       const { visibility } = action.payload;
       state.posts[hideIndex].visibility = visibility;
       return { ...state };

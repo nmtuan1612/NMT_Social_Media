@@ -9,9 +9,12 @@ import Home from "./pages/home/Home";
 import PostView from "./pages/post/PostView";
 import Profile from "./pages/profile/Profile";
 import NotFoundPage from "./pages/notFound/NotFoundPage";
+import MessengerPage from "./pages/messenger/MessengerPage";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
+  const { sizeState } = useSelector((state) => state.appReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,6 +52,8 @@ function App() {
           <Route path='/profile/:id' element={user ? <Profile /> : <Navigate to='../auth' />} />
 
           <Route path='/post/:id' element={user ? <PostView /> : <Navigate to='../auth' />} />
+
+          <Route path='/messenger' element={sizeState !== "desktop" ? <MessengerPage /> : <Navigate to='../home' />} />
 
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>
