@@ -1,16 +1,9 @@
+import { Box, Typography } from "@mui/material";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import FixedBottomNavigation from "../../components/bottomNavigation/BottomNavigation";
-import PostSide from "../../components/postSide/PostSide";
-import ProfileSide from "../../components/profileSide/ProfileSide";
-import RightSide from "../../components/rightSide/RightSide";
-import { Box, Button, Container, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import "./Home.scss";
 import { Link } from "react-router-dom";
+import "./Home.scss";
 
 const NotFoundPage = () => {
-  const { sizeState } = useSelector((state) => state.appReducer);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);

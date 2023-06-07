@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { commentToPost, getPostComments } from "../../redux/actions/PostAction";
+import { useDispatch, useSelector } from "react-redux";
+import { commentToPost } from "../../redux/actions/PostAction";
 import { createNotification } from "../../redux/actions/UserAction";
 
 const CommentShare = (props) => {

@@ -1,10 +1,10 @@
 import { UilLocationPoint, UilPlayCircle, UilScenery, UilTimes } from "@iconscout/react-unicons";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadImage, uploadPost } from "../../redux/actions/UploadAction";
-import "./PostShare.scss";
-import { PostApi } from "redux/api";
 import { toast } from "react-toastify";
+import { PostApi } from "redux/api";
+import { uploadPost } from "../../redux/actions/UploadAction";
+import "./PostShare.scss";
 
 const PostShare = () => {
   const [image, setImage] = useState(null);

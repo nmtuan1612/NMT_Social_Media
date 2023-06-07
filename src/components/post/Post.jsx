@@ -72,13 +72,13 @@ const Post = (props) => {
       setShowComment(inPostView);
       dispatch(getPostComments(data._id));
     }
-  }, [inPostView, pathname]);
+  }, [inPostView, pathname, data?._id, dispatch]);
 
   useEffect(() => {
     if (showComment) {
       dispatch(getPostComments(data?._id));
     }
-  }, [showComment]);
+  }, [showComment, data?._id, dispatch]);
 
   const hideOptions = () => {
     setOpen(false);

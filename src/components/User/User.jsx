@@ -8,7 +8,6 @@ function User({ data, showFollow = true }) {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [following, setFollowing] = useState(data.followers.includes(user._id));
   const dispatch = useDispatch();
-  const serverPublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleFollow = (e) => {
     // e.preventDefault();

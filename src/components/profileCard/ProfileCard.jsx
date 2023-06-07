@@ -1,15 +1,14 @@
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import { useUser } from "../../hooks";
-import UserList from "../userReactList/UserList";
 import { followUser, unFollowUser } from "../../redux/actions/UserAction";
-import "./ProfileCard.scss";
-import moment from "moment";
 import { createConversation } from "../../redux/api/ChatRequest";
+import UserList from "../userReactList/UserList";
+import "./ProfileCard.scss";
 
 const ProfileCard = () => {
   const { user } = useSelector((state) => state.authReducer.authData);

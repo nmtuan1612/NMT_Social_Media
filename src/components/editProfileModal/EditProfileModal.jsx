@@ -2,11 +2,10 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import Modal from "@mui/material/Modal";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { updateUser } from "../../redux/actions/UserAction";
 import { PostApi } from "../../redux/api";
 import "./EditProfileModal.scss";
-import { toast } from "react-toastify";
 
 const EditProfileModal = ({ modalOpened, hideModal, data }) => {
   const [formData, setFormData] = useState({});

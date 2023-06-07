@@ -23,8 +23,6 @@ const ChatBox = (props) => {
   const socket = useMemo(() => io.connect("http://localhost:5000"), []);
   const otherUser = useUser(otherUserId);
 
-  const serverPublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-
   useEffect(() => {
     socket.emit("join_chat", chatID);
     const fetchMessages = async () => {
@@ -32,7 +30,7 @@ const ChatBox = (props) => {
       data && setMessageList(data);
     };
     chatID && fetchMessages();
-  }, [chatID]);
+  }, [chatID, socket]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

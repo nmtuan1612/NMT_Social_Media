@@ -1,8 +1,7 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useUser from "../../hooks/useUser";
 import Heart from "../../img/like.png";
 import NotLike from "../../img/notlike.png";
 import { likePostComment } from "../../redux/actions/PostAction";

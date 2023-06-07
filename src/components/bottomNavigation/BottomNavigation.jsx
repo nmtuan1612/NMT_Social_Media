@@ -1,4 +1,3 @@
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -13,22 +12,19 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-// import Home from "../../img/home.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../../redux/actions/AuthAction";
 import EditProfileModal from "../editProfileModal/EditProfileModal";
 import Messenger from "../messenger/Messenger";
 import NotificationList from "../notificationList/NotificationList";
 import SavedPostList from "../savedPostList/SavedPostList";
 import "./BottomNavigation.scss";
-import ChatBox from "../messenger/components/ChatBox/ChatBox";
 
 const FixedBottomNavigation = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const { user } = useSelector((state) => state.authReducer.authData);
-  const { chatID, otherUserId } = useSelector((state) => state.appReducer);
+  // const { chatID, otherUserId } = useSelector((state) => state.appReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

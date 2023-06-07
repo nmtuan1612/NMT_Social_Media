@@ -34,7 +34,7 @@ function App() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='App'>
