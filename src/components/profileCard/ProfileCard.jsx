@@ -25,8 +25,6 @@ const ProfileCard = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
-  const serverPublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
-
   useEffect(() => {
     setCurrentUser(null);
     if (data) {
@@ -120,10 +118,14 @@ const ProfileCard = () => {
             <span className='name-text'>{currentUser.userName}</span>
             {currentUser.about ? (
               <span className='profile-about-text'>{currentUser.about}</span>
-            ) : currentUser._id === user._id ? (
-              <span className='profile-about-text'>Write about yourself</span>
             ) : (
-              <div style={{ height: "1rem" }} />
+              <>
+                {currentUser._id === user._id ? (
+                  <span className='profile-about-text'>Write about yourself</span>
+                ) : (
+                  <div style={{ height: "1rem" }} />
+                )}
+              </>
             )}
           </div>
 
