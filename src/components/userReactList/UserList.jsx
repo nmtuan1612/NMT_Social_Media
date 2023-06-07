@@ -11,9 +11,7 @@ const UserList = (props) => {
   const { title, userIdList, openModal, hideModal } = props;
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { user: currentUser } = useSelector(
-    (state) => state.authReducer.authData
-  );
+  const { user: currentUser } = useSelector((state) => state.authReducer.authData);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,8 +27,8 @@ const UserList = (props) => {
     <Modal
       open={openModal}
       onClose={hideModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby='modal-modal-title'
+      aria-describedby='modal-modal-description'
       // sx={{ p: 0 }}
     >
       <Box
@@ -39,31 +37,24 @@ const UserList = (props) => {
           top: "40%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
           bgcolor: "#fff",
           borderRadius: 2,
           boxShadow: 24,
-          p: 2,
+          p: 2
         }}
+        className='user-list__modal'
       >
-        <CloseIcon
-          sx={{ float: "right", cursor: "pointer" }}
-          onClick={hideModal}
-        />
-        <div className="likes-list">
+        <CloseIcon sx={{ float: "right", cursor: "pointer" }} onClick={hideModal} />
+        <div className='likes-list'>
           <h3>{title ? title : "Likes"}</h3>
           {loading ? (
             <div style={{ color: "var(--gray", fontSize: 14 }}>
               <i>Loading...</i>
             </div>
           ) : userList.length ? (
-            <div className="user-list">
+            <div className='user-list'>
               {userList.map((user) => (
-                <User
-                  data={user}
-                  key={user._id}
-                  showFollow={currentUser._id !== user._id}
-                />
+                <User data={user} key={user._id} showFollow={currentUser._id !== user._id} />
               ))}
             </div>
           ) : (

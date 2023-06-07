@@ -1,79 +1,90 @@
 @import "/src/App.scss";
 
 .PostShare {
-    display: flex;
-    gap: 1rem;
-    background-color: var(--cardColor);
-    padding: 1rem;
-    border-radius: 1rem;
+  display: flex;
+  gap: 1rem;
+  background-color: var(--cardColor);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.15);
   // width: 100%;
 
-    & .profile-img {
-        border-radius: 50%;
-        width: 3rem;
-        height: 3rem;
-        object-fit: cover;
+  & .profile-img {
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border: 1px solid #ebebeb;
 
-        @include mobile {
-            width: 2rem;
-            height: 2rem;
-        }
+    @include mobile {
+      width: 2rem;
+      height: 2rem;
     }
-    & .post-create {
+  }
+  & .post-create {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 0.6rem;
+
+    & > input {
+      background-color: var(--inputColor);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
+
+    & .post-options {
+      display: flex;
+      justify-content: space-around;
+      padding-top: 4px;
+      border-top: 1px solid #e4e7eb;
+
+      & > .option {
+        padding: 6px 10px;
+        flex: 1;
+        border-radius: 3px;
         display: flex;
-        flex-direction: column;
-        width: 90%;
-        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        @include mobile {
+          padding: 2px;
+        }
 
-        & > input {
-            background-color: var(--inputColor);
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            outline: none;
+        & .option-text {
+          margin-left: 4px;
         }
-        & .post-options {
-            display: flex;
-            justify-content: space-around;
-    
-            & > .option {
-                padding: 6px 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 12px;
-                cursor: pointer;
-                @include mobile {
-                    padding: 2px;
-                }
-
-                & .option-text {
-                    margin-left: 4px;
-                }
-            }
-        }
-        & .post-share-btn {
-            width: 30%;
-            align-self: center;
-            padding: 8px 16px;
-        }
-        & .previewImg {
-            position: relative;
-            padding-top: 24px;
-
-            & > svg {
-                position: absolute;
-                right: 1rem;
-                top: 0rem;
-                cursor: pointer;
-            }
-            & > img, video {
-                width: 100%;
-                max-height: 20rem;
-                object-fit: contain;
-                border-radius: 0.5rem;
-            }
-        }
+      }
     }
+    & .post-share-btn {
+      order: 4;
+      width: 30%;
+      align-self: center;
+      padding: 0px 16px;
+      height: 30px;
+    }
+    & .previewImg {
+      order: 2;
+      position: relative;
+      padding-top: 24px;
+
+      & > svg {
+        position: absolute;
+        right: 1rem;
+        top: 0rem;
+        cursor: pointer;
+      }
+      & > img,
+      video {
+        width: 100%;
+        max-height: 20rem;
+        object-fit: contain;
+        border-radius: 0.5rem;
+      }
+    }
+  }
 }

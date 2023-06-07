@@ -1,78 +1,102 @@
+@import "/src/App.scss";
+
 .Post {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: var(--cardColor);
+  border-radius: 1rem;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+
+  & .profile-user__name {
+    font-weight: 600;
+    &:hover {
+      color: gray;
+    }
+  }
+
+  & .post-options {
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: var(--cardColor);
-    border-radius: 1rem;
-    gap: 0.8rem;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
 
-    & .post-options {
-        display: flex;
-        position: relative;
-        justify-content: space-between;
-        align-items: center;
-
-        & .author-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            & .profile-img {
-                border-radius: 50%;
-                width: 2rem;
-                height: 2rem;
-                object-fit: cover;
-            }
+    & .author-info {
+      display: flex;
+      // align-items: center;
+      gap: 0.5rem;
+      & .profile-img {
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        overflow: hidden;
+        border: 1px solid #ebebeb;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
         }
-
-        & .options { 
-            & svg {
-                cursor: pointer;
-            }
-        }
+      }
     }
 
-    & > img {
-        width: 100%;
-        max-height: 30rem;
-        object-fit: cover;
-        border-radius: 0.5rem;
+    & .options {
+      & svg {
+        cursor: pointer;
+      }
     }
-    & > video {
-        width: 100%;
-        max-height: 30rem;
-        object-fit: contain;
-        border-radius: 0.5rem;
-    }
-    & .postReact {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
+  }
 
-        & > img {
-            cursor: pointer;
+  & > img {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+  & > video {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  & .postReact {
+    .post__react-icons {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      height: 24px;
+
+      & svg {
+        cursor: pointer;
+        &:hover {
+          opacity: 0.6;
         }
+      }
     }
     & .likeNum {
-        color: var(--gray);
-        font-size: 12px;
-        cursor: pointer;
+      color: var(--gray);
+      font-size: 13px;
+      cursor: pointer;
+      width: fit-content;
+      padding-right: 1rem;
+      display: inline-block;
     }
-    & .detail {
-        display: flex;
-        gap: 0.5rem;
-    }
-    & .created-time {
-        margin-top: -0.5rem;
-        font-size: 12px;
-        color: var(--gray);
-    }
+  }
+  & .detail {
+    display: flex;
+    gap: 0.5rem;
+  }
+  & .created-time {
+    font-size: 12px;
+    color: var(--gray);
+  }
 
-    & a {
-        text-decoration: none;
-        color: inherit;
-    }
-    & .delete-btn {
-        height: 2rem;
-        padding: 0 20px;
-    }
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+  & .delete-btn {
+    height: 2rem;
+    padding: 0 20px;
+  }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import FollowersCard from "../followersCard/FollowersCard";
 import LogoSearch from "../logoSearch/LogoSearch";
 import ProfileCard from "../profileCard/ProfileCard";
-import './ProfileSide.scss';
+import "./ProfileSide.scss";
 
 const ProfileSide = () => {
   return (
@@ -14,6 +14,6 @@ const ProfileSide = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProfileSide;

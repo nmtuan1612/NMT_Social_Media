@@ -89,10 +89,10 @@ export const commentToPost = (comment) => async (dispatch) => {
 
 export const getPostComments = (postId) => async (dispatch) => {
   dispatch({ type: "GET_COMMENT_START" });
-  
+
   try {
     const comments = await PostApi.getPostComments(postId);
-    dispatch({ type: "GET_COMMENT", payload: comments.data });
+    dispatch({ type: "GET_COMMENT", payload: { currentPostId: postId, commentData: comments.data } });
   } catch (error) {
     console.log(error);
   }
@@ -103,6 +103,6 @@ export const likePostComment = (commentId, userId) => async (dispatch) => {
     const comment = await PostApi.likePostComment(commentId, userId);
     dispatch({ type: "LIKE_COMMENT", payload: comment.data });
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
-}
+};

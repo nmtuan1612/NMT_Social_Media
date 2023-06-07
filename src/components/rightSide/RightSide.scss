@@ -1,72 +1,104 @@
 @import "/src/App.scss";
 
 .RightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+
+  @include mobile {
+    display: none;
+  }
+  @include tablet {
+    display: none;
+  }
+  @include desktop {
+    position: sticky;
+    position: -webkit-sticky;
+    max-height: 100vh;
+    top: 0;
+  }
+
+  & .navIcons {
+    margin-top: 0.4rem;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--cardColor);
+    padding: 6px 8px;
+    border-radius: 1rem;
+
+    .nav-icon__wrapper {
+      width: 36px;
+      height: 36px;
+      background: #e4e6eb;
+      border-radius: 50%;
+      cursor: pointer;
+      & svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      &:hover {
+        background: var(--hrColor);
+        svg {
+          color: #f95f35;
+        }
+      }
+    }
+
+    // & svg {
+    //   width: 1.5rem;
+    //   height: 1.5rem;
+    //   cursor: pointer;
+
+    //   &:hover {
+    //     color: #f95f35;
+    //   }
+    // }
+
+    & img {
+      width: 1.3rem;
+      height: 1.3rem;
+      cursor: pointer;
+    }
+
+    & .noti-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
+
+  & .trend-card {
     @include mobile {
-        position: fixed;
-        z-index: 10;
-        left: 0rem;
-        right: 0rem;
-        bottom: 0;
-        padding: 0.4rem 1.6rem 0.6rem 1.6rem;
-        background-color: #fff;
+      display: none;
     }
     @include tablet {
-        position: fixed;
-        z-index: 10;
-        left: 0rem;
-        right: 0rem;
-        bottom: 0;
-        padding: 0.4rem 1.6rem 0.6rem 1.6rem;
-        background-color: #fff;
+      display: none;
     }
+  }
 
-    & .navIcons {
-        margin-top: 0.4rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  & .right-share-btn {
+    height: 2.4rem;
+    width: 80%;
+    font-size: 16px;
+    align-self: center;
 
-        & svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            cursor: pointer;
-        }
-
-        & img {
-            width: 1.3rem;
-            height: 1.3rem;
-            cursor: pointer;
-        }
-
-        & .noti-side {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
+    @include mobile {
+      display: none;
     }
-
-    & .trend-card {
-        @include mobile {
-            display: none;
-        }
-        @include tablet {
-            display: none;
-        }
+    @include tablet {
+      display: none;
     }
+  }
 
-    & .right-share-btn {
-        height: 3rem;
-        width: 80%;
-        align-self: center;
-
-        @include mobile {
-            display: none;
-        }
-        @include tablet {
-            display: none;
-        }
+  .chat-box__desktop {
+    position: absolute;
+    bottom: 1.6rem;
+    right: 0;
+    height: 420px;
+    @include desktop {
+      // width: 300px;
     }
+  }
 }

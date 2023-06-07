@@ -31,10 +31,14 @@ const FollowerCard = () => {
       <h3 className="followers-card-title">People you may know</h3>
       <div className="followers-list">
         {people.map((person, idx) => {
-          if (person._id !== currentUser._id && person._id !== user._id && !user.following.includes(person._id)) {
+          if (
+            person._id !== currentUser._id &&
+            person._id !== user._id &&
+            !user.following.includes(person._id)
+          ) {
             return <User data={person} key={idx} />;
           }
-          return '';
+          return "";
         })}
       </div>
     </div>

@@ -6,7 +6,7 @@ import { getSearchResults } from "../../redux/api/UserRequest";
 import { useSelector } from "react-redux";
 import User from "../User/User";
 import { Link } from "react-router-dom";
-import SavedPost from '../rightSide/SavedPost';
+import SavedPost from "../savedPostList/SavedPost";
 
 function LogoSearch() {
   const [searchKey, setSearchKey] = useState("");
@@ -55,6 +55,7 @@ function LogoSearch() {
             placeholder="#Explore"
             value={searchKey}
             onChange={inputChange}
+            style={{ paddingLeft: 8 }}
           />
           <button
             className="search-icon"
@@ -72,7 +73,7 @@ function LogoSearch() {
                     <User data={result} showFollow={false} key={result._id} />
                   );
                 } else {
-                  return <SavedPost key={result._id} savedPost={result} /> ;
+                  return <SavedPost key={result._id} savedPost={result} />;
                 }
               })}
             </div>

@@ -45,48 +45,41 @@ const InfoCard = () => {
   const hideModal = () => setModalOpened(false);
 
   return (
-    <div className="InfoCard">
-      <div className="infoHead">
+    <div className='InfoCard'>
+      <div className='infoHead'>
         <h4>Profile Info</h4>
         {user._id === profileUser._id ? (
-          <div className="edit-btn">
-            <UilPen
-              style={{ width: "2rem", height: "1.2rem" }}
-              onClick={showModal}
-            />
-            <EditProfileModal
-              modalOpened={modalOpened}
-              hideModal={hideModal}
-              data={user}
-            />
+          <div className='edit-btn'>
+            <UilPen style={{ width: "2rem", height: "1.2rem" }} onClick={showModal} />
+            <EditProfileModal modalOpened={modalOpened} hideModal={hideModal} data={user} />
           </div>
         ) : (
           ""
         )}
       </div>
 
-      <div className="info">
+      <div className='info'>
         <span>
           <b>Status</b>
         </span>
         <span>{profileUser.relationship}</span>
       </div>
 
-      <div className="info">
+      <div className='info'>
         <span>
           <b>Live in</b>
         </span>
         <span>{profileUser.liveIn}</span>
       </div>
 
-      <div className="info">
+      <div className='info'>
         <span>
           <b>Come from</b>
         </span>
         <span>{profileUser.country}</span>
       </div>
 
-      <div className="info">
+      <div className='info'>
         <span>
           <b>Work at</b>
         </span>
@@ -94,10 +87,12 @@ const InfoCard = () => {
       </div>
 
       {profileUser._id === user._id ? (
-        <button className="button logout-btn" onClick={handleLogout}>
+        <button className='button logout-btn' onClick={handleLogout}>
           Logout
         </button>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </div>
   );
 };

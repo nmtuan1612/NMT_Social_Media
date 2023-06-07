@@ -1,0 +1,8 @@
+@import "/src/App.scss";
+
+#message__list {
+  @include desktop {
+    width: 300px;
+    min-width: 300px;
+  }
+}

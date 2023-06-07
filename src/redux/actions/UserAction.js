@@ -26,7 +26,7 @@ export const createNotification = (notiData) => async (dispatch) => {
 };
 export const deleteNotification = (notiData) => async (dispatch) => {
   const noti = await UserApi.deleteNotification(notiData);
-  console.log(noti)
+  console.log(noti);
 };
 
 export const getNotifications = (userId) => async (dispatch) => {

@@ -1,9 +1,10 @@
 const initState = {
   commentData: [],
+  currentPostId: null,
   loading: false,
   creating: false,
   updating: false,
-  error: false,
+  error: false
 };
 
 const commentReducer = (state = initState, action) => {
@@ -18,16 +19,15 @@ const commentReducer = (state = initState, action) => {
     case "GET_COMMENT_START":
       return { ...state, loading: true };
     case "GET_COMMENT":
-      const newCommentList = [...state.commentData, ...action.payload].filter(
-        (cmt, index, self) =>
-          index === self.findLastIndex((t) => t._id === cmt._id)
+      const newCommentList = action.payload.commentData?.filter(
+        (cmt, index, self) => index === self.findLastIndex((t) => t._id === cmt._id)
       );
-      return { ...state, commentData: newCommentList, loading: false };
+      return { ...state, commentData: newCommentList, currentPostId: action.payload.currentPostId, loading: false };
 
     case "LIKE_COMMENT":
-        const likedIdx = state.commentData.findIndex(cmt => cmt._id === action.payload._id);
-        state.commentData[likedIdx] = action.payload;
-        return { ...state, commentData: [...state.commentData] }
+      const likedIdx = state.commentData.findIndex((cmt) => cmt._id === action.payload._id);
+      state.commentData[likedIdx].likes = action.payload.likes;
+      return { ...state, commentData: [...state.commentData] };
     default:
       return state;
   }

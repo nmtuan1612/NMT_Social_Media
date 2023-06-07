@@ -1,55 +1,110 @@
-.edit-post {
+@import "/src/App.scss";
+
+.modal-delete {
+  width: 400px;
+
+  @include mobile {
+    width: 70%;
+  }
+}
+
+.modal__edit-post {
+  width: 600px;
+
+  @include mobile {
+    width: 90%;
+  }
+  & .post-options {
     display: flex;
-    width: 100%;
-    min-height: 300px;
+    justify-content: space-around;
+    padding-top: 4px;
 
-    & .post-img {
-        width: 50%;
-        border-right: 1px solid var(--borderColor);
-    
-        & img {
-            width: 90%;
-            max-height: 34rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-        }
+    & > .option {
+      padding: 6px 10px;
+      flex: 1;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      @include mobile {
+        padding: 2px;
+      }
+
+      & .option-text {
+        margin-left: 4px;
+      }
     }
-    
-    & .post-info {
-        padding-left: 1rem;
-        flex: 1;
+  }
+}
+
+.edit-post {
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+
+  & .post-img {
+    width: 50%;
+    position: relative;
+    border-right: 1px solid var(--borderColor);
+
+    & img,
+    video {
+      width: 98%;
+      height: 360px;
+      max-height: 34rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    & > svg {
+      position: absolute;
+      right: 1rem;
+      top: 0.6rem;
+      cursor: pointer;
+      &:hover {
+        color: var(--base-color);
+      }
+    }
+  }
+
+  & .post-info {
+    padding-left: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    & .post-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      & .author-info {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        & .post-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            & .author-info {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                & img {
-                    border-radius: 50%;
-                    width: 2rem;
-                    height: 2rem;
-                    object-fit: cover;
-                }
-            }
-            & .post-desc {
-                & textarea {
-                    outline: none;
-                    border: none;
-                }
-            }
+        align-items: center;
+        gap: 0.5rem;
+        & img {
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          object-fit: cover;
+          border: 1px solid #ebebeb;
         }
-        & .post-save {
-            align-self: flex-end;
-
-            & .save-btn {
-                height: 2rem;
-                padding: 0 30px;
-            }
+      }
+      & .post-desc {
+        & textarea {
+          outline: none;
+          border: none;
         }
+      }
     }
+    & .post-save {
+      align-self: flex-end;
+
+      & .save-btn {
+        height: 2rem;
+        padding: 0 30px;
+      }
+    }
+  }
 }

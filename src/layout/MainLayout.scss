@@ -1,0 +1,22 @@
+@import "/src/App.scss";
+
+.MainLayout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+
+  @include mobile {
+    // overflow: scroll;
+    gap: 1rem;
+  }
+  @include tablet {
+    justify-content: space-around;
+    grid-template-rows: 3rem auto 3rem;
+    gap: 1rem;
+  }
+  @include desktop {
+    justify-content: space-around;
+    grid-template-columns: 22% 54% 20%;
+    gap: 1rem;
+  }
+}

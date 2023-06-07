@@ -3,6 +3,7 @@
 .PostView {
   position: relative;
   display: grid;
+  grid-template-columns: 100%;
 
   @include tablet {
     justify-content: space-around;
@@ -11,13 +12,19 @@
   }
   @include desktop {
     justify-content: space-around;
-    grid-template-columns: 20rem 36rem 18rem;
+    grid-template-columns: 22% 54% 20%;
     gap: 1rem;
   }
 
   & .current-post {
     @include mobile {
-      height: 100vh;
+      // height: 100vh;
+      margin-top: 4px;
+
+      .Post {
+        margin: 0 -16px 4rem;
+        border-radius: 0;
+      }
     }
   }
 }
