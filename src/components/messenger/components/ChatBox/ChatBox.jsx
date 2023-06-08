@@ -20,7 +20,8 @@ const ChatBox = (props) => {
   const { chatID, otherUserId } = useSelector((state) => state.appReducer);
   const dispatch = useDispatch();
 
-  const socket = useMemo(() => io.connect("http://localhost:5000"), []);
+  // const socket = useMemo(() => io.connect("http://localhost:5000"), []);
+  const socket = useMemo(() => io.connect("https://nmt-social-media-app.onrender.com"), []);
   const otherUser = useUser(otherUserId);
 
   useEffect(() => {
